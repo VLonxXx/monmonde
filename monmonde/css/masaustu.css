@@ -1,0 +1,547 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --main-gold: #D4AF37;      /* Ana hardal rengi */
+    --light-gold: #E5C76B;     /* Açık hardal */
+    --dark-gold: #996515;      /* Koyu hardal */
+    --black: #1A1A1A;          /* Siyah */
+    --light-black: #2C2C2C;    /* Açık siyah */
+    --white: #FFFFFF;          /* Beyaz */
+}
+
+/* Style etiketinin içindeki tüm CSS kodları buraya taşındı */
+body {
+    background: var(--black);
+    overflow-x: hidden;
+}
+
+.nav-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--black);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-container a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
+}
+
+.logo-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: none;
+}
+
+.logo-container:hover .logo-circle {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    transform: rotate(5deg);
+}
+
+.logo-container:hover .brand-name {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 5px;
+}
+
+.brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--main-gold);
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: var(--main-gold);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+    position: relative;
+    padding: 5px 0;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    text-align: center;
+    color: var(--main-gold);
+    z-index: 2;
+    padding: 20px;
+    position: relative;
+}
+
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5em;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.5s;
+}
+
+.hero-subtitle {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.7s;
+}
+
+.hero-subtext {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8em;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.9s;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* Yuvarlak çerçeve efekti */
+.hero-content::before {
+    display: none;
+}
+
+.floating-circles {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.circle {
+    position: absolute;
+    background: linear-gradient(135deg, 
+        rgba(212, 175, 55, 0.1),  /* Hardal rengi */
+        rgba(229, 199, 107, 0.15)  /* Açık hardal */
+    );
+    border-radius: 50%;
+    animation: float 15s infinite linear;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* Her baloncuğa farklı efekt vermek için */
+.circle:nth-child(odd) {
+    background: linear-gradient(135deg, 
+        rgba(153, 101, 21, 0.1),  /* Koyu hardal */
+        rgba(212, 175, 55, 0.15)  /* Hardal rengi */
+    );
+}
+
+.circle:nth-child(3n) {
+    background: linear-gradient(135deg, 
+        rgba(229, 199, 107, 0.1),  /* Açık hardal */
+        rgba(153, 101, 21, 0.15)  /* Koyu hardal */
+    );
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+    }
+}
+
+.explore-btn {
+    padding: 15px 40px;
+    font-size: 1.2em;
+    background: #fff;
+    border: none;
+    border-radius: 30px;
+    color: var(--main-gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards 0.9s;
+    position: relative;
+    overflow: hidden;
+}
+
+.explore-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.explore-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 107, 0, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.explore-btn:hover::before {
+    left: 100%;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.products-section {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Section başlığını kaldır */
+.section-title {
+    display: none;
+}
+
+/* Products section için floating circles */
+.products-section .floating-circles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Ürün grid'ini düzenle */
+.product-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 20px;
+    justify-items: center;
+    margin-top: 100px;
+}
+
+.product-card {
+    background: var(--light-black);
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255, 107, 0, 0.1);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(50px);
+    border: 1px solid var(--main-gold);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 300px;
+    height: 420px;
+    margin: 0 auto;
+}
+
+.product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--light-gold);
+}
+
+.product-card:hover .image-container {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 107, 0, 0.15);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
+    );
+    border-radius: 38px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.product-info {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 15px;
+    background: var(--cream);
+}
+
+.product-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4em;
+    color: var(--main-gold);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card:hover .product-title {
+    color: var(--light-gold);
+}
+
+.product-price {
+    font-size: 1.3em;
+    color: var(--light-gold);
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+.add-to-cart {
+    width: 100%;
+    padding: 12px;
+    background: var(--main-gold);
+    color: var(--black);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: auto;
+}
+
+.add-to-cart:hover {
+    background: var(--light-gold);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 10px 20px;
+    }
+
+    .hero-title {
+        font-size: 3em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+
+    nav {
+        display: none;
+    }
+}
+
+.image-container {
+    width: 260px;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 0;
+    position: relative;
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+html {
+    scroll-behavior: smooth; /* Yumuşak kaydırma efekti */
+}
+
+/* Arama kutusu stilleri */
+.search-container {
+    display: flex;
+    align-items: center;
+    background: var(--light-black);
+    border-radius: 25px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--main-gold);
+}
+
+.search-container:focus-within {
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+    transform: translateY(-2px);
+    border-color: var(--light-gold);
+}
+
+#searchInput {
+    border: none;
+    outline: none;
+    background: none;
+    padding: 8px;
+    font-size: 1em;
+    width: 100%;
+    color: var(--main-gold);
+}
+
+#searchInput::placeholder {
+    color: var(--light-gold);
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    color: var(--main-gold);
+    cursor: pointer;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    color: var(--light-gold);
+    transform: scale(1.1);
+}
+
+/* Arama sonuçları için stil */
+.product-card.hidden {
+    display: none;
+}
+
+/* Sonuç bulunamadı mesajı için stil */
+.no-results {
+    text-align: center;
+    color: var(--dark-gold);
+    font-size: 1.2em;
+    padding: 40px;
+    grid-column: 1 / -1;
+    display: none;
+}
+
+.no-results.visible {
+    display: block;
+}
+
+/* Sepet link stili */
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.cart-link i {
+    font-size: 1.2em;
+}
+
+.cart-count {
+    background: var(--main-gold);
+    color: var(--black);
+    font-size: 0.8em;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    transition: all 0.3s ease;
+}
+
+.cart-link:hover .cart-count {
+    transform: scale(1.1);
+    background: var(--light-gold);
+    color: #fff;
+}
